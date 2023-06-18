@@ -6,6 +6,7 @@ applicationsets:
             - list:
                 elements:
                   - namespace: main
+                  - namespace: cop
             - git:
                 repoURL: git@github.com:dolldot/manifests.git
                 revision: main
