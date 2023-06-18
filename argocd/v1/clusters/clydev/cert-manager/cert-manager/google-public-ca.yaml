@@ -1,0 +1,28 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: google-public-ca
+spec:
+  acme:
+    email: mbah.dollvper@gmail.com
+    externalAccountBinding:
+      keyID: ea621c5bfc77d714cea25302632e5839
+      keySecretRef:
+        key: eab_hmac_key
+        name: google-public-ca-eab-secret
+    privateKeySecretRef:
+      name: google-public-ca-tls
+    server: https://dv.acme-v02.api.pki.goog/directory
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: google-public-ca-eab-secret
+  namespace: cert-manager
+type: Opaque
+data:
+  eab_hmac_key: TGZGMDNZSFgzaVZDTk1EWjl2b2JTVVp2c0dGOUxQZEUySUE4SW9uNk1BdEpWajJuS2tiQzRsOVBjRklYSHlmYzhSVGs4TlUxdHZWR0VnNmhiUGx6SXc=
