@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: main-test
-  namespace: cop
-data:
-  test: "test-configmap"
