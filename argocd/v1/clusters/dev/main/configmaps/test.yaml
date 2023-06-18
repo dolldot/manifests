@@ -1,0 +1,136 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: embossing-file-email-templates
+  namespace: cop
+data:
+  idemia_email_template.html: |
+    <html>
+      <head>
+      </head>
+      <body>
+        <table width="100%" style="padding: 28px;" cellspacing="0" cellpadding="0" bgcolor="#DDDDDD">
+          <tbody>
+            <tr>
+              <td>
+                <table class="main-body" style="margin: 0px auto; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 630px; width: 100%; color: #4A4A4A" border="0" cellspacing="0" cellpadding="0">
+                  <tbody>
+                    <tr>
+                      <td bgcolor="#FFFFFF" valign="top" style="padding: 45px;">
+                        <div style="text-align: left; margin-left: 0px; margin-right: 0px; display: flex">
+                          <a href="${properties.kcLogoLink!}" target="_blank">
+                            <img width="110" height="36" alt="xfers.io" title="xfers.io" align="left" src="https://xfers.com/assets/xfersLogo-729628fd1b82f00821dff8faed15d00b3a95de4be6b3c974330cf715e6776564.png" />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#FFFFFF" valign="top" style="padding-left: 45px; padding-right: 45px; padding-bottom: 24px; text-align: center;">
+                        <div>
+                          <table aria-describedby="information on embossing file"
+                            style="margin: 0px auto; max-width: 630px; width: 100%; font-size: 12px; color: black;"
+                            border="0" cellspacing="0" cellpadding="0"
+                          >
+                            <thead style="background-color: #d99795;">
+                              <tr>
+                                <th style="width: 50%; border: 1px solid black; padding: 4px;">FILE NAME</th>
+                                <th style="border: 1px solid black; border-left-width: 0; padding: 4px;">PRODUCT TYPE</th>
+                                <th style="border: 1px solid black; border-left-width: 0; padding: 4px;">COUNT</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td style="word-wrap: break-word; max-width: 305px; text-align: left;">{{.FileName}}</td>
+                              <!-- Todo, after the requirement is cleared -->
+                                <td></td>
+                                <td style="max-width: 10px;">{{.Count}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#FFFFFF" valign="top" style="padding-top: 0px; padding-right: 45px; padding-bottom: 45px; padding-left: 45px;">
+                        <hr style="height: 1px; border: none; background-color: #D3D3D3;">
+                        <div style="padding-top: 24px; font-size: 11px; line-height: 16px; color: #4A4A4A;">
+                          <p>Sent by Xfers Ptd Ltd. Singapore</p>
+                          <p>This is an automatically generated email, please do not reply.</p>
+                          <p>
+                            <b>Consumer advisory</b> - The XFERS payment service is regarded as a Widely Accepted Stored Value Facility under Singapore law.
+                            XFERS PTE. LTD., is the Approved Holder of the XFERS Wallet Stored Value Facility.
+                            Both XFERS and the Approved Bank have undertaken to be fully liable for the Stored Value in accordance with the
+                            <a style="text-decoration: none; color: #2F8DEE" href="https://www.xfers.com/sg/terms-of-service" target="_blank">terms and conditions</a>.
+                            Consumers (Users) are advised to read these terms and conditions carefully.
+                          </p>
+                          <p style="color: #9B9B9B;">
+                            Copyright © 2011-{{.Year}} Xfers Pte Ltd. All Rights Reserved.
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+  wki_email_template.html: |
+    <html>
+    <head>
+    </head>
+    <body>
+      <table width="100%" style="padding: 28px;" cellspacing="0" cellpadding="0" bgcolor="#DDDDDD">
+        <tbody>
+          <tr>
+            <td>
+              <table class="main-body" style="margin: 0px auto; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 630px; width: 100%; color: #4A4A4A" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                  <tr>
+                    <td bgcolor="#FFFFFF" valign="top" style="padding: 45px;">
+                      <div style="text-align: left; margin-left: 0px; margin-right: 0px; display: flex">
+                        <a href="${properties.kcLogoLink!}" target="_blank">
+                          <img width="110" height="36" alt="xfers.io" title="xfers.io" align="left" src="https://xfers.com/assets/xfersLogo-729628fd1b82f00821dff8faed15d00b3a95de4be6b3c974330cf715e6776564.png" />
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#FFFFFF" valign="top" style="padding-left: 45px; padding-right: 45px; padding-bottom: 24px; text-align: center;">
+                      <hr style="height:1px; border:none; background-color:#D3D3D3; margin-bottom: 24px;">
+                      <div style="font-size: 15px; color: #4A4A4A;">
+                        <p style="color: #2F8DEE;">
+                          <b>{{.Message}}</b>
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#FFFFFF" valign="top" style="padding-top: 0px; padding-right: 45px; padding-bottom: 45px; padding-left: 45px;">
+                      <hr style="height: 1px; border: none; background-color: #D3D3D3;">
+                      <div style="padding-top: 24px; font-size: 11px; line-height: 16px; color: #4A4A4A;">
+                        <p>Sent by Xfers Ptd Ltd. Singapore</p>
+                        <p>This is an automatically generated email, please do not reply.</p>
+                        <p>
+                          <b>Consumer advisory</b> - The XFERS payment service is regarded as a Widely Accepted Stored Value Facility under Singapore law.
+                          XFERS PTE. LTD., is the Approved Holder of the XFERS Wallet Stored Value Facility.
+                          Both XFERS and the Approved Bank have undertaken to be fully liable for the Stored Value in accordance with the
+                          <a style="text-decoration: none; color: #2F8DEE" href="https://www.xfers.com/sg/terms-of-service" target="_blank">terms and conditions</a>.
+                          Consumers (Users) are advised to read these terms and conditions carefully.
+                        </p>
+                        <p style="color: #9B9B9B;">
+                          Copyright © 2011-{{.Year}} Xfers Pte Ltd. All Rights Reserved.
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </body>
+    </html>

@@ -1,0 +1,31 @@
+applicationsets:
+  - name: dev
+    generators:
+      - matrix:
+          generators:
+            - list:
+                elements:
+                  - namespace: main
+            - git:
+              repoURL: git@github.com:dolldot/manifests.git
+              revision: master
+              directories:
+                - path: "argocd/v1/clusters/dev/{{namespace}}/*"
+    template:
+      metadata:
+        name: "{{namespace}}-appset-{{path.basename}}"
+      spec:
+        project: default
+        source:
+          repoURL: git@github.com:dolldot/manifests.git
+          targetRevision: master
+          path: "{{path}}"
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: {{namespace}}
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+          syncPolicy:
+            - CreateNamespace=true

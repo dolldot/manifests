@@ -1,0 +1,9 @@
+namespace: argocd
+
+helmCharts:
+- name: argocd-apps
+  repo: https://argoproj.github.io/argo-helm
+  version: 1.2.0
+  releaseName: dot-bootstrap
+  namespace: argocd
+  valuesFile: ./values.yaml

@@ -1,0 +1,125 @@
+configs:
+  # General Argo CD configuration
+  ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
+  cm:
+    admin.enabled: true
+    kustomize.buildOptions: --enable-helm
+    url: https://argocd.infra-1-26.fazz.cloud
+    # Related doc:
+    # https://argo-cd.readthedocs.io/en/release-2.5/user-guide/diffing/
+    # https://github.com/argoproj/argo-cd/blob/v2.5.5/docs/operator-manual/argocd-cm.yaml#L88
+    resource.customizations.ignoreDifferences.Secret: |
+      jsonPointers:
+        # The secrets will be mutated by vault secret mutating webhook
+        - /data
+    resource.customizations.ignoreDifferences.all: |
+      managedFieldsManagers:
+        # We aggregate clusterroles in the cluster
+        # and the rules of clusterroles will be changed by clusterrole-aggregation-controller
+        # https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles
+        - clusterrole-aggregation-controller
+        # We may use cert-manager to inject certs and it use cainjector to inject certs
+        # So we ignored fields managed by cainjector
+        - cainjector
+      jsonPointers:
+        # The replica would be changed by HPA
+        - /spec/replicas
+      jqPathExpressions:
+        # We ignore all the rollme fields anywhere for all k8s objects
+        # The rollme field is a customized field controlled by {{ randAlphaNum }} in helm charts
+        # We intentionally add that filed to make sure that resources would be updated for every deployment
+        - ..|.rollme?
+        # We ignore these fields because "dateInZone" function used in the helm charts
+        - ..|.["app.kubernetes.io/version"]?
+        - ..|.["tags.datadoghq.com/version"]?
+    resource.customizations.ignoreDifferences.HorizontalPodAutoscaler: |
+      jsonPointers:
+        # ArgoCD OutOfSync issue: 
+        # https://www.notion.so/fazzfinancialgroup/ArgoCD-OutOfSync-for-HPA-d77902f91856406296291c3f57c9c293
+        - /spec/metrics
+  # Argo CD configuration parameters
+  ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cmd-params-cm.yaml
+  params:
+    controller.log.format: "json"
+    controller.log.level: "warn"
+  # Argo CD RBAC policy configuration
+  ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md
+  rbac:
+    # Related doc: https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
+    policy.csv: |
+      # The role:deployer has all permissions over the applications and get permission for all projects
+      p, role:deployer, applications, *, */*, allow
+      p, role:deployer, projects, get, *, allow
+    scopes: "[groups, email]"
+
+redis-ha:
+  enabled: true
+
+controller:
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+  ingress:
+    enabled: false
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+  resources:
+    limits:
+      cpu: 200m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+applicationSet:
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+  enabled: true
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+# We do not use the bundled dex because we use the one in ams_mgmt cluster
+dex:
+  enabled: false
+
+notifications:
+  enabled: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
