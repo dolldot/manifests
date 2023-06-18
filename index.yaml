@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  dockerhub:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-06-18T15:53:02.908343871Z"
+    description: A Helm chart to create dockerhub secret
+    digest: a0fa51e31a585ff9e8b3147b1309224b6d9c165860a963b11f4603a44bb16b4e
+    name: dockerhub
+    type: application
+    urls:
+    - https://github.com/dolldot/manifests/releases/download/dockerhub-0.1.0/dockerhub-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-06-18T15:53:02.908348071Z"
