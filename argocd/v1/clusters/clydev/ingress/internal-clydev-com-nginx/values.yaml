@@ -5,10 +5,6 @@ controller:
   ingressClass: internal-clydev-com-nginx
   ingressClassResource:
     name: internal-clydev-com-nginx
-  service:
-    targetPorts:
-      http: http
-      https: https
   replicaCount: 1
   resources:
     requests:
