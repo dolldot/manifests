@@ -7,10 +7,10 @@ applicationsets:
                 elements:
                   - namespace: main
             - git:
-              repoURL: git@github.com:dolldot/manifests.git
-              revision: main
-              directories:
-                - path: "argocd/v1/clusters/dev/{{namespace}}/*"
+                repoURL: git@github.com:dolldot/manifests.git
+                revision: main
+                directories:
+                  - path: "argocd/v1/clusters/dev/{{namespace}}/*"
     template:
       metadata:
         name: "{{namespace}}-appset-{{path.basename}}"
