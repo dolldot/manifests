@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: embossing-file-email-templates
-  namespace: cop
+  namespace: main
 data:
   idemia_email_template.html: |
     <html>
