@@ -8,7 +8,7 @@ applicationsets:
                   - namespace: main
             - git:
               repoURL: git@github.com:dolldot/manifests.git
-              revision: master
+              revision: main
               directories:
                 - path: "argocd/v1/clusters/dev/{{namespace}}/*"
     template:
@@ -18,11 +18,11 @@ applicationsets:
         project: default
         source:
           repoURL: git@github.com:dolldot/manifests.git
-          targetRevision: master
+          targetRevision: main
           path: "{{path}}"
         destination:
           server: https://kubernetes.default.svc
-          namespace: {{namespace}}
+          namespace: "{{namespace}}"
         syncPolicy:
           automated:
             prune: true
