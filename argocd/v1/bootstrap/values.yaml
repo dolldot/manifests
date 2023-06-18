@@ -30,3 +30,33 @@ applicationsets:
             selfHeal: true
           syncOptions:
             - CreateNamespace=true
+  - name: clydev
+    generators:
+      - matrix:
+          generators:
+            - list:
+                elements:
+                  - namespace: main
+            - git:
+                repoURL: git@github.com:dolldot/manifests.git
+                revision: main
+                directories:
+                  - path: "argocd/v1/clusters/clydev/{{namespace}}/*"
+    template:
+      metadata:
+        name: "clydev-{{namespace}}-appset-{{path.basename}}"
+      spec:
+        project: default
+        source:
+          repoURL: git@github.com:dolldot/manifests.git
+          targetRevision: main
+          path: "{{path}}"
+        destination:
+          name: clydev
+          namespace: "{{namespace}}"
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
+          syncOptions:
+            - CreateNamespace=true
