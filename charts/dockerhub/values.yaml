@@ -1,0 +1,7 @@
+imageCredentials:
+  # -- The url of the docker registry
+  registry: https://index.docker.io/v1/
+  # -- The username to login to the docker registry
+  username: ""
+  # -- The username to login to the docker registry
+  password: ""
