@@ -13,7 +13,7 @@ applicationsets:
                   - path: "argocd/v1/clusters/dev/{{namespace}}/*"
     template:
       metadata:
-        name: "{{namespace}}-appset-{{path.basename}}"
+        name: "dev-{{namespace}}-appset-{{path.basename}}"
       spec:
         project: default
         source:
