@@ -38,6 +38,7 @@ applicationsets:
                 elements:
                   - namespace: main
                   - namespace: cert-manager
+                  - namespace: ingress
             - git:
                 repoURL: git@github.com:dolldot/manifests.git
                 revision: main
