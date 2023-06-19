@@ -1,3 +1,19 @@
+applications:
+  - name: external-secrets
+    project: default
+    source:
+      repoURL: git@github.com:dolldot/manifests.git
+      targetRevision: main
+      path: argocd/v1/components/external-secrets
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: external-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
 applicationsets:
   - name: clydev
     generators:
