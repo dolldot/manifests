@@ -4,7 +4,6 @@ configs:
   cm:
     admin.enabled: true
     kustomize.buildOptions: --enable-helm
-    url: https://argocd.infra-1-26.fazz.cloud
     # Related doc:
     # https://argo-cd.readthedocs.io/en/release-2.5/user-guide/diffing/
     # https://github.com/argoproj/argo-cd/blob/v2.5.5/docs/operator-manual/argocd-cm.yaml#L88
