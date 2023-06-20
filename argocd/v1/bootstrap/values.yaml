@@ -4,10 +4,28 @@ applications:
     source:
       repoURL: git@github.com:dolldot/manifests.git
       targetRevision: main
-      path: argocd/v1/components/external-secrets
+      path: components/external-secrets
     destination:
       server: https://kubernetes.default.svc
       namespace: external-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
+  - name: cert-manager
+    project: default
+    sources:
+    - repoURL: git@github.com:dolldot/manifests.git
+      targetRevision: main
+      path: components/cert-manager
+    - repoURL: git@github.com:dolldot/manifests.git
+      targetRevision: main
+      path: components/cert-manager/issuer/gts
+    destination:
+      name: clydev
+      namespace: cert-manager
     syncPolicy:
       automated:
         prune: true
@@ -22,7 +40,6 @@ applicationsets:
             - list:
                 elements:
                   - namespace: main
-                  - namespace: cert-manager
                   - namespace: ingress
             - git:
                 repoURL: git@github.com:dolldot/manifests.git

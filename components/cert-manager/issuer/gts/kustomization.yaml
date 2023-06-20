@@ -1,0 +1,3 @@
+resources:
+  - gts-cluster-issuer.yaml
+  - gts-eab-secret.yaml

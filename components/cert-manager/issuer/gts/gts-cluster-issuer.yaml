@@ -16,13 +16,4 @@ spec:
     solvers:
     - http01:
         ingress:
-          class: nginx
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: google-public-ca-eab-secret
-  namespace: cert-manager
-type: Opaque
-data:
-  eab_hmac_key: TGZGMDNZSFgzaVZDTk1EWjl2b2JTVVp2c0dGOUxQZEUySUE4SW9uNk1BdEpWajJuS2tiQzRsOVBjRklYSHlmYzhSVGs4TlUxdHZWR0VnNmhiUGx6SXc=
+          ingressClassName: nginx
