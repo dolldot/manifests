@@ -1,4 +1,19 @@
 projects:
+- name: local
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  description: ArgoCD project for the ArgoCD apps in local cluster
+  destinations:
+    - namespace: "*"
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+    - git@github.com:dolldot/manifests.git
 - name: clydev
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -14,7 +29,21 @@ projects:
       kind: "*"
   sourceRepos:
     - git@github.com:dolldot/manifests.git
+
 applications:
+- name: local-bootstrap
+  project: local
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: argocd/v2/clusters/local/bootstrap
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 - name: clydev-bootstrap
   project: clydev
   source:
