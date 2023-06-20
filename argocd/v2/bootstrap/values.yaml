@@ -45,7 +45,7 @@ applications:
       prune: true
       selfHeal: true
 - name: clydev-cluster-bootstrap
-  project: clydev
+  project: default
   additionalAnnotations:
     argocd.argoproj.io/sync-wave: "4"
   source:
