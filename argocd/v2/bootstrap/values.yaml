@@ -1,0 +1,30 @@
+projects:
+- name: clydev
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  description: ArgoCD project for the ArgoCD apps in clydev cluster
+  destinations:
+    - namespace: "*"
+      name: clydev
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+    - git@github.com:dolldot/manifests.git
+applications:
+- name: clydev-bootstrap
+  project: clydev
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: argocd/v2/clusters/clydev/bootstrap
+  destination:
+    name: clydev
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,55 @@
+applications:
+- name: external-secrets
+  project: clydev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "1"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/external-secrets
+  destination:
+    name: clydev
+    namespace: external-secrets
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+- name: cert-manager
+  project: clydev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "2"
+  sources:
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/cert-manager
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/cert-manager/issuer/gts
+  destination:
+    name: clydev
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+- name: ingress-nginx
+  project: clydev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "3"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/ingress-nginx
+  destination:
+    name: clydev
+    namespace: ingress
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
