@@ -2,7 +2,7 @@ applications:
 - name: external-secrets
   project: clydev
   additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "6"
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
@@ -19,7 +19,7 @@ applications:
 - name: cert-manager
   project: clydev
   additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "7"
   sources:
   - repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
@@ -39,7 +39,7 @@ applications:
 - name: ingress-nginx
   project: clydev
   additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "8"
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main

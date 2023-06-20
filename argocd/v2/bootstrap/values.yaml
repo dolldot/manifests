@@ -1,7 +1,5 @@
 projects:
 - name: local
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   description: ArgoCD project for the ArgoCD apps in local cluster
   destinations:
     - namespace: "*"
@@ -15,8 +13,6 @@ projects:
   sourceRepos:
     - git@github.com:dolldot/manifests.git
 - name: clydev
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   description: ArgoCD project for the ArgoCD apps in clydev cluster
   destinations:
     - namespace: "*"
@@ -33,6 +29,8 @@ projects:
 applications:
 - name: local-bootstrap
   project: local
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "-1"
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
@@ -46,6 +44,8 @@ applications:
       selfHeal: true
 - name: clydev-bootstrap
   project: clydev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "5"
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
