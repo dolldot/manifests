@@ -27,7 +27,7 @@ projects:
     - git@github.com:dolldot/manifests.git
 
 applications:
-- name: local-bootstrap
+- name: local-cluster-bootstrap
   project: local
   additionalAnnotations:
     argocd.argoproj.io/sync-wave: "-1"
@@ -42,7 +42,7 @@ applications:
     automated:
       prune: true
       selfHeal: true
-- name: clydev-bootstrap
+- name: clydev-cluster-bootstrap
   project: clydev
   additionalAnnotations:
     argocd.argoproj.io/sync-wave: "5"
