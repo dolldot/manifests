@@ -1,36 +1,23 @@
-projects:
-- name: local
-  description: ArgoCD project for the ArgoCD apps in local cluster
-  destinations:
-    - namespace: "*"
-      server: https://kubernetes.default.svc
-  clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
-  namespaceResourceWhitelist:
-    - group: "*"
-      kind: "*"
-  sourceRepos:
-    - git@github.com:dolldot/manifests.git
-- name: clydev
-  description: ArgoCD project for the ArgoCD apps in clydev cluster
-  destinations:
-    - namespace: "*"
-      name: clydev
-  clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
-  namespaceResourceWhitelist:
-    - group: "*"
-      kind: "*"
-  sourceRepos:
-    - git@github.com:dolldot/manifests.git
-
 applications:
+- name: projects-bootstrap
+  project: default
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "1"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: argocd/v2/bootstrap/projects
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 - name: local-cluster-bootstrap
   project: local
   additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "2"
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
@@ -42,10 +29,25 @@ applications:
     automated:
       prune: true
       selfHeal: true
+- name: clusters-bootstrap
+  project: default
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "3"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: argocd/v2/bootstrap/clusters
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 - name: clydev-cluster-bootstrap
   project: clydev
   additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "4"
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
