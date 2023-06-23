@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: brndnmtthws/nginx-echo-headers
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8080
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: google-public-ca
+  hosts:
+    - host: echo.internal.clydev.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: echo-internal-clydev-com-tls
+      hosts:
+        - echo.internal.clydev.com
