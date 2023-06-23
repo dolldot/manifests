@@ -34,7 +34,6 @@ configs:
     resource.customizations.ignoreDifferences.HorizontalPodAutoscaler: |
       jsonPointers:
         # ArgoCD OutOfSync issue: 
-        # https://www.notion.so/fazzfinancialgroup/ArgoCD-OutOfSync-for-HPA-d77902f91856406296291c3f57c9c293
         - /spec/metrics
   # Argo CD configuration parameters
   ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cmd-params-cm.yaml
@@ -109,7 +108,6 @@ applicationSet:
       cpu: 200m
       memory: 256Mi
 
-# We do not use the bundled dex because we use the one in ams_mgmt cluster
 dex:
   enabled: false
 
