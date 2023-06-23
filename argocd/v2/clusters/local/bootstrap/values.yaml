@@ -3,10 +3,13 @@ applications:
   project: local
   additionalAnnotations:
     argocd.argoproj.io/sync-wave: "1"
-  source:
-    repoURL: git@github.com:dolldot/manifests.git
+  sources:
+  - repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
     path: components/external-secrets
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/external-secrets/providers/aws-parameter-store
   destination:
     server: https://kubernetes.default.svc
     namespace: external-secrets
