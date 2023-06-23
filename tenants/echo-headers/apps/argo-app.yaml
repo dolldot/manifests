@@ -21,6 +21,9 @@ spec:
           tag: latest
           pullPolicy: IfNotPresent
 
+        service:
+          port: 8080
+
         ingress:
           enabled: true
           annotations:
@@ -28,11 +31,9 @@ spec:
           hosts:
             - host: echo.internal.clydev.com
               paths:
-                - /
+                - path: /
+                  pathType: ImplementationSpecific
           tls:
             - secretName: echo-internal-clydev-com-tls
               hosts:
                 - echo.internal.clydev.com
-
-        service:
-          port: 8080
