@@ -1,8 +1,6 @@
-# Manifests
+A collection of kubernetes manifests that I use for research purposes.
 
-A collection of kubernetes manifests that I use for research purposes
-
-## Charts Usage
+### Charts Usage
 
 ```bash
 helm repo add manifests https://dolldot.github.io/manifests
