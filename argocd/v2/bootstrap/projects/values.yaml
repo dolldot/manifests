@@ -12,6 +12,7 @@ projects:
       kind: "*"
   sourceRepos:
     - git@github.com:dolldot/manifests.git
+    - https://dolldot.github.io/manifests
 - name: clydev
   description: ArgoCD project for the ArgoCD apps in clydev cluster
   destinations:
@@ -25,3 +26,4 @@ projects:
       kind: "*"
   sourceRepos:
     - git@github.com:dolldot/manifests.git
+    - https://dolldot.github.io/manifests
