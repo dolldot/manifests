@@ -21,6 +21,10 @@ spec:
           tag: latest
           pullPolicy: IfNotPresent
 
+        secrets:
+          sample:
+            test: sample
+
         service:
           port: 8080
 
