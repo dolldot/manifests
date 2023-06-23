@@ -49,7 +49,22 @@ applications:
     namespace: ingress
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+- name: echo-headers
+  project: clydev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "21"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: tenants/echo-headers
+  destination:
+    name: clydev
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,7 @@
+helmCharts:
+- name: microservice
+  repo: https://dolldot.github.io/manifests
+  version: 0.1.1
+  releaseName: echo-headers
+  namespace: default
+  valuesFile: ./values.yaml
