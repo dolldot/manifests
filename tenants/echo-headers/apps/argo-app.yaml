@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: echo-headers
+  namespace: argocd
+spec:
+  project: clydev
+  destination:
+    namespace: default
+  source:
+    repoURL: "https://dolldot.github.io/manifests"
+    targetRevision: 0.1.0
+    chart: microservice
+    helm:
+      releaseName: "echo-headers"
+      values: |
+        replicaCount: 1
+
+        image:
+          repository: brndnmtthws/nginx-echo-headers
+          tag: latest
+          pullPolicy: IfNotPresent
+
+        ingress:
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: google-public-ca
+          hosts:
+            - host: echo.internal.clydev.com
+              paths:
+                - /
+          tls:
+            - secretName: echo-internal-clydev-com-tls
+              hosts:
+                - echo.internal.clydev.com
+
+        service:
+          port: 8080
