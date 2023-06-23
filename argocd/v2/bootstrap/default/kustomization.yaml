@@ -1,8 +1,5 @@
 namespace: argocd
 
-# resources:
-#   - clusters
-
 helmCharts:
 - name: argocd-apps
   repo: https://argoproj.github.io/argo-helm
