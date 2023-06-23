@@ -6,7 +6,7 @@ applications:
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
-    path: argocd/v2/bootstrap/projects
+    path: argocd/bootstrap/projects
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -21,7 +21,7 @@ applications:
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
-    path: argocd/v2/clusters/local/bootstrap
+    path: argocd/clusters/local/bootstrap
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -36,7 +36,7 @@ applications:
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
-    path: argocd/v2/bootstrap/clusters
+    path: argocd/bootstrap/clusters
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -51,7 +51,7 @@ applications:
   source:
     repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
-    path: argocd/v2/clusters/clydev/bootstrap
+    path: argocd/clusters/clydev/bootstrap
   destination:
     server: https://kubernetes.default.svc
     namespace: default
