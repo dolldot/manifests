@@ -2,32 +2,43 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- The number of pods to run
 replicaCount: 1
 
 image:
+  # -- The image used by the deployment
   repository: nginx
+  # -- The pull policy of the image
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- The tag of the image used
   tag: ""
 
+# -- Secrets with credentials to pull images from a private registry
 imagePullSecrets: []
+
+# -- Provide a name, default value will be `Chart.name`
 nameOverride: ""
+
+# -- String to fully override
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: false
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
+  # -- The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# -- Annotations for the all deployed pods
 podAnnotations: {}
 
+# -- The security context used by the pods
 podSecurityContext: {}
   # fsGroup: 2000
 
+# -- The security context used by the containers in the pods
 securityContext: {}
   # capabilities:
   #   drop:
@@ -37,26 +48,32 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  # -- The type of service
   type: ClusterIP
+  # -- The port used by the service
   port: 80
 
 ingress:
+  # -- Whether to enable ingress for the service
   enabled: false
+  # -- Defines which ingress controller will implement the resource
   className: "nginx"
+  # -- Additional ingress annotations
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-    # cert-manager.io/cluster-issuer: google-public-ca
+    # cert-manager.io/cluster-issuer: zerossl
+  # -- List of ingress hosts
   hosts:
     - host: chart-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
+  # -- Ingress TLS configuration
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
+# -- Resource limits and requests for the pods
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -70,25 +87,34 @@ resources: {}
   #   memory: 128Mi
 
 autoscaling:
+  # -- Enable Horizontal Pod Autoscaler ([HPA])
   enabled: false
+  # -- Minimum number of replicas for the deployment [HPA]
   minReplicas: 1
-  maxReplicas: 100
+  # -- Maximum number of replicas for the deployment [HPA]
+  maxReplicas: 3
+  # -- Average cpu utilization percentage for the deployment [HPA]
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Node selector
 nodeSelector: {}
 
+# -- Tolerations for use with node taints
 tolerations: []
 
+# -- Assign custom [affinity] rules to the deployment
 affinity: {}
 
 # -- The key value pairs that will be put in the ConfigMap manifests that will be used by all the pods.
 config: {}
 
-# see https://external-secrets.io/v0.8.3/api/secretstore/
 secretStoreRef:
-  # see providers in https://external-secrets.io/v0.8.3/provider/aws-parameter-store/
+  # -- The name of the external-secrets provider
+  ## Ref: https://external-secrets.io/v0.8.3/provider/aws-parameter-store/
   name: aws-parameter-store
+  # -- Which kind of secretStore of the external-secrets
+  ## Ref: https://external-secrets.io/v0.8.3/api/secretstore/
   kind: ClusterSecretStore
 
 # -- The key value pairs that will be put in the Secret manifests that will be used by all the pods.
