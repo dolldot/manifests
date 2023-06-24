@@ -30,6 +30,9 @@ applications:
   - repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
     path: components/cert-manager/issuer/gts
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/cert-manager/issuer/zerossl
   destination:
     name: clydev
     namespace: cert-manager
