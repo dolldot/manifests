@@ -14,6 +14,16 @@ entries:
   microservice:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-06-24T18:23:58.777771427Z"
+    description: A Helm chart for Kubernetes
+    digest: 44a9eb275bdfc1b1015adaff9fd837285ea472367f3c6e30ef61ec892be4d2e5
+    name: microservice
+    type: application
+    urls:
+    - https://github.com/dolldot/manifests/releases/download/microservice-0.1.3/microservice-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-06-23T13:23:12.164819017Z"
     description: A Helm chart for Kubernetes
     digest: 0beff1402246681bf676476bab83e6c3fed2917cb6710e9014ec55e0e066e644
@@ -42,4 +52,4 @@ entries:
     urls:
     - https://github.com/dolldot/manifests/releases/download/microservice-0.1.0/microservice-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-23T13:23:12.164971919Z"
+generated: "2023-06-24T18:23:58.777875628Z"
