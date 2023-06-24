@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: zerossl
+spec:
+  acme:
+    email: woy2032@gmail.com
+    externalAccountBinding:
+      keyID: 6tq4QWNjpdxnp61_C-lJZA
+      keySecretRef:
+        key: eab-hmac-key
+        name: zerossl-eab-secret
+    privateKeySecretRef:
+      name: zerossl-private-key
+    server: https://acme.zerossl.com/v2/DV90
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token

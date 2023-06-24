@@ -1,0 +1,5 @@
+namespace: cert-manager
+
+resources:
+  - cluster-issuer.yaml
+  - eab-secret.yaml
