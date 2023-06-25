@@ -54,7 +54,7 @@ controller:
   autoscaling:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3
+    maxReplicas: 5
   resources:
     limits:
       cpu: 500m
@@ -67,7 +67,7 @@ server:
   autoscaling:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3
+    maxReplicas: 5
   ingress:
     enabled: false
   resources:
@@ -82,7 +82,7 @@ repoServer:
   autoscaling:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3
+    maxReplicas: 5
   resources:
     limits:
       cpu: 200m
@@ -95,7 +95,7 @@ applicationSet:
   autoscaling:
     enabled: true
     minReplicas: 1
-    maxReplicas: 3
+    maxReplicas: 5
   enabled: true
   resources:
     limits:
