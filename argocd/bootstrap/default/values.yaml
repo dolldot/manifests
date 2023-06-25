@@ -166,14 +166,14 @@ applicationsets:
             team: all
             env: staging
         values:
-          path: "tenants/usecase-one/rrq/staging/{{name}}"
+          path: "tenants/usecase-one/rrq/staging/clusters/{{name}}"
     - clusters:
         selector:
           matchLabels:
             team: rrq
             env: production
         values:
-          path: "tenants/usecase-one/rrq/production/{{name}}"
+          path: "tenants/usecase-one/rrq/production/clusters/{{name}}"
   template:
     metadata:
       name: "rrq-apps-{{name}}"
