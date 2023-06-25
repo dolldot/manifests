@@ -50,9 +50,6 @@ configs:
       p, role:deployer, projects, get, *, allow
     scopes: "[groups, email]"
 
-redis-ha:
-  enabled: true
-
 controller:
   autoscaling:
     enabled: true
