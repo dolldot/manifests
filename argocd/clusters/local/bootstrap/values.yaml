@@ -24,7 +24,7 @@ applications:
   additionalAnnotations:
     argocd.argoproj.io/sync-wave: "2"
   source:
-  - repoURL: git@github.com:dolldot/manifests.git
+    repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
     path: components/metrics-server
   destination:
