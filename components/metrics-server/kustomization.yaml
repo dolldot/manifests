@@ -7,3 +7,4 @@ helmCharts:
   releaseName: metrics-server
   namespace: kube-system
   includeCRDs: true
+  valuesFile: ./insecure-tls/values.yaml
