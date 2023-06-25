@@ -19,3 +19,18 @@ applications:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+- name: metrics-server
+  project: local
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "2"
+  source:
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/metrics-server
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
