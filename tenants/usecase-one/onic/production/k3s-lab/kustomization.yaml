@@ -1,0 +1,9 @@
+namePrefix: onic-bss-
+
+resources:
+  - ../bss-apps
+
+patches:
+  - path: destination.yaml
+    target:
+      kind: Application

@@ -1,0 +1,3 @@
+resources:
+  - echo-headers/argo-app.yaml
+  - todo/argo-app.yaml
