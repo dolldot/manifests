@@ -41,3 +41,17 @@ projects:
   sourceRepos:
     - git@github.com:dolldot/manifests.git
     - https://dolldot.github.io/manifests
+- name: dev
+  description: ArgoCD project for the ArgoCD apps in dev cluster
+  destinations:
+    - namespace: "*"
+      name: dev
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+    - git@github.com:dolldot/manifests.git
+    - https://dolldot.github.io/manifests

@@ -1,0 +1,58 @@
+applications:
+- name: external-secrets
+  project: dev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "6"
+  sources:
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/external-secrets
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/external-secrets/providers/aws-parameter-store
+  destination:
+    name: dev
+    namespace: external-secrets
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+- name: cert-manager
+  project: dev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "7"
+  sources:
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/cert-manager
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/cert-manager/issuers/zerossl
+  destination:
+    name: dev
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+- name: ingress-nginx
+  project: dev
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "8"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/ingress-nginx
+  destination:
+    name: dev
+    namespace: ingress
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

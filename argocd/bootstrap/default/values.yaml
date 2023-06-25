@@ -74,3 +74,18 @@ applications:
     automated:
       prune: true
       selfHeal: true
+- name: dev-cluster-bootstrap
+  project: default
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "5"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: argocd/clusters/dev/bootstrap
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

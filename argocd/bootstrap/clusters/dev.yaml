@@ -1,0 +1,25 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: dev
+spec:
+  secretStoreRef:
+    name: aws-parameter-store
+    kind: ClusterSecretStore
+  target:
+    name: dev
+  data:
+  - secretKey: name
+    remoteRef:
+      key: dev-auth
+      property: name
+  - secretKey: server
+    remoteRef:
+      key: dev-auth
+      property: server
+  - secretKey: config
+    remoteRef:
+      key: dev-auth
+      property: config
