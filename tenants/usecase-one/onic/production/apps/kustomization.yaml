@@ -1,0 +1,2 @@
+resources:
+  - echo-headers/argo-app.yaml

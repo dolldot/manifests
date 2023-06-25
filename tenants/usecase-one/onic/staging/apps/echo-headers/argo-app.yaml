@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: echo-headers
+  namespace: argocd
+spec:
+  project: clydev
+  destination:
+    namespace: default
+  source:
+    repoURL: "https://dolldot.github.io/manifests"
+    targetRevision: 0.1.0
+    chart: microservice
+    helm:
+      releaseName: "echo-headers"
+      values: |
+        replicaCount: 1
+
+        image:
+          repository: brndnmtthws/nginx-echo-headers
+          tag: latest
+          pullPolicy: IfNotPresent
+
+        service:
+          port: 8080
