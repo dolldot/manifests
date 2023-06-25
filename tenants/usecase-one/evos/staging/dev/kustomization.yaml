@@ -1,0 +1,9 @@
+namePrefix: staging-
+
+resources:
+  - ../apps
+
+patches:
+  - path: destination.yaml
+    target:
+      kind: Application

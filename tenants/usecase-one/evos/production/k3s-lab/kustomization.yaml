@@ -1,0 +1,9 @@
+namePrefix: production-
+
+resources:
+  - ../apps
+
+patches:
+  - path: destination.yaml
+    target:
+      kind: Application

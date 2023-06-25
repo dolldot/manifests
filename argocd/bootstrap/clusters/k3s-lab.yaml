@@ -3,6 +3,8 @@ kind: ExternalSecret
 metadata:
   labels:
     argocd.argoproj.io/secret-type: cluster
+    team: evos
+    env: production
   name: k3s-lab
 spec:
   secretStoreRef:

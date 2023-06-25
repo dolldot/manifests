@@ -89,3 +89,38 @@ applications:
     automated:
       prune: true
       selfHeal: true
+
+applicationsets:
+- name: evos-apps
+  namespace: argocd
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            team: all
+            env: staging
+        values:
+          path: "manifests/evos/staging/${{name}}"
+    - clusters:
+        selector:
+          matchLabels:
+            team: evos
+            env: production
+        values:
+          path: "manifests/evos/production/${{name}}"
+  template:
+    metadata:
+      name: "evos-apps-{{name}}"
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:dolldot/manifests.git
+        targetRevision: HEAD
+        path: "{{values.path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
