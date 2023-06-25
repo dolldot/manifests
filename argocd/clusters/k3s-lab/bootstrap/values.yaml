@@ -29,9 +29,6 @@ applications:
     path: components/cert-manager
   - repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
-    path: components/cert-manager/issuers/gts
-  - repoURL: git@github.com:dolldot/manifests.git
-    targetRevision: main
     path: components/cert-manager/issuers/zerossl
   destination:
     name: k3s-lab
