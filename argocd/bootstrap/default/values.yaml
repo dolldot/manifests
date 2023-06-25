@@ -100,14 +100,14 @@ applicationsets:
             team: all
             env: staging
         values:
-          path: "manifests/evos/staging/{{name}}"
+          path: "tenants/usecase-one/evos/staging/{{name}}"
     - clusters:
         selector:
           matchLabels:
             team: evos
             env: production
         values:
-          path: "manifests/evos/production/{{name}}"
+          path: "tenants/usecase-one/evos/production/{{name}}"
   template:
     metadata:
       name: "evos-apps-{{name}}"
