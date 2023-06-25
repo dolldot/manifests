@@ -51,10 +51,7 @@ configs:
     scopes: "[groups, email]"
 
 controller:
-  autoscaling:
-    enabled: true
-    minReplicas: 1
-    maxReplicas: 5
+  replicas: 2
   resources:
     limits:
       cpu: 500m
@@ -92,11 +89,8 @@ repoServer:
       memory: 256Mi
 
 applicationSet:
-  autoscaling:
-    enabled: true
-    minReplicas: 1
-    maxReplicas: 5
   enabled: true
+  replicas: 1
   resources:
     limits:
       cpu: 200m
