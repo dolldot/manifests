@@ -1,3 +1,5 @@
+namePrefix: onic-
+
 resources:
   - ../apps
 
