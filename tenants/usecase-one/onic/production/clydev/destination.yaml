@@ -4,4 +4,4 @@ metadata:
   name: onic-apps
 spec:
   destination:
-    name: k3s-lab
+    name: clydev
