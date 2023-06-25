@@ -1,0 +1,10 @@
+namePrefix: k3s-lab-
+namespace: argocd
+
+helmCharts:
+- name: argocd-apps
+  repo: https://argoproj.github.io/argo-helm
+  version: 1.2.0
+  releaseName: k3s-lab-apps
+  namespace: argocd
+  valuesFile: ./values.yaml

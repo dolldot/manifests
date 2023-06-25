@@ -27,3 +27,17 @@ projects:
   sourceRepos:
     - git@github.com:dolldot/manifests.git
     - https://dolldot.github.io/manifests
+- name: k3s-lab
+  description: ArgoCD project for the ArgoCD apps in k3s-lab cluster
+  destinations:
+    - namespace: "*"
+      name: k3s-lab
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  sourceRepos:
+    - git@github.com:dolldot/manifests.git
+    - https://dolldot.github.io/manifests

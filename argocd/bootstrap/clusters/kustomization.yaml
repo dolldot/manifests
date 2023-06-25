@@ -2,3 +2,4 @@ namespace: argocd
 
 resources:
   - clydev.yaml
+  - k3s-lab.yaml

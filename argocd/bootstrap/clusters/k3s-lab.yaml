@@ -1,0 +1,25 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+  name: k3s-lab
+spec:
+  secretStoreRef:
+    name: aws-parameter-store
+    kind: ClusterSecretStore
+  target:
+    name: k3s-lab
+  data:
+  - secretKey: name
+    remoteRef:
+      key: k3s-lab-auth
+      property: name
+  - secretKey: server
+    remoteRef:
+      key: k3s-lab-auth
+      property: server
+  - secretKey: config
+    remoteRef:
+      key: k3s-lab-auth
+      property: config
