@@ -1,0 +1,3 @@
+resources:
+  - rrq-core-echo-headers/argo-app.yaml
+  - rrq-core-todo/argo-app.yaml

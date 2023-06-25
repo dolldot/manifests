@@ -1,0 +1,7 @@
+resources:
+  - ../../apps/core
+
+patches:
+  - path: destination.yaml
+    target:
+      kind: Application

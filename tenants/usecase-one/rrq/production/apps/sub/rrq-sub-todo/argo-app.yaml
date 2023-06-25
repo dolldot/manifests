@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rrq-sub-todo
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: default
+  source:
+    repoURL: "https://dolldot.github.io/manifests"
+    targetRevision: 0.1.3
+    chart: microservice
+    helm:
+      releaseName: "rrq-sub-todo"
+      values: |
+        replicaCount: 1
+
+        image:
+          repository: prologic/todo
+          tag: latest
+          pullPolicy: IfNotPresent
+
+        service:
+          port: 8000

@@ -3,7 +3,7 @@ kind: ExternalSecret
 metadata:
   labels:
     argocd.argoproj.io/secret-type: cluster
-    team: onic
+    team: rrq
     env: production
   name: clydev
 spec:
