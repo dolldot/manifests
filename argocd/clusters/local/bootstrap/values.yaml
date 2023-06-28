@@ -54,4 +54,20 @@ applications:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
+- name: ingress-nginx
+  project: local
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "4"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/ingress-nginx
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
