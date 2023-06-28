@@ -1,5 +1,8 @@
 namespace: argocd
 
+resources:
+- additional-secret.yaml
+
 # https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
 helmCharts:
 - name: argo-cd

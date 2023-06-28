@@ -2,6 +2,7 @@ configs:
   # General Argo CD configuration
   ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
   cm:
+    url: "https://argocd.dev.clydev.com"
     admin.enabled: true
     kustomize.buildOptions: --enable-helm
     # Related doc:
@@ -35,11 +36,22 @@ configs:
       jsonPointers:
         # ArgoCD OutOfSync issue: 
         - /spec/metrics
+    dex.config: |
+      connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: $argocd-additional-secret:oidc.github.clientID
+          clientSecret: $argocd-additional-secret:oidc.github.clientSecret
+        orgs:
+          - name: $argocd-additional-secret:oidc.github.orgName
   # Argo CD configuration parameters
   ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cmd-params-cm.yaml
   params:
     controller.log.format: "json"
     controller.log.level: "warn"
+    server.insecure: true
   # Argo CD RBAC policy configuration
   ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md
   rbac:
@@ -66,7 +78,17 @@ server:
     minReplicas: 1
     maxReplicas: 5
   ingress:
-    enabled: false
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      nginx.ingress.kubernetes.io/force-ssl-redirect: true
+    ingressClassName: "nginx"
+    hosts:
+    - argocd.dev.clydev.com
+    tls:
+      - secretName: argocd-dev-clydev-com-tls
+        hosts:
+          - argocd.dev.clydev.com
   resources:
     limits:
       cpu: 200m
@@ -100,7 +122,7 @@ applicationSet:
       memory: 256Mi
 
 dex:
-  enabled: false
+  enabled: true
 
 notifications:
   enabled: true
