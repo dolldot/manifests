@@ -90,103 +90,103 @@ applications:
 #       prune: true
 #       selfHeal: true
 
-applicationsets:
-- name: evos-apps
-  namespace: argocd
-  generators:
-    - clusters:
-        selector:
-          matchLabels:
-            team: all
-            env: staging
-        values:
-          path: "tenants/usecase-one/evos/staging/{{name}}"
-    - clusters:
-        selector:
-          matchLabels:
-            team: evos
-            env: production
-        values:
-          path: "tenants/usecase-one/evos/production/{{name}}"
-  template:
-    metadata:
-      name: "evos-apps-{{name}}"
-    spec:
-      project: default
-      source:
-        repoURL: git@github.com:dolldot/manifests.git
-        targetRevision: HEAD
-        path: "{{values.path}}"
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: argocd
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-- name: onic-apps
-  namespace: argocd
-  generators:
-    - clusters:
-        selector:
-          matchLabels:
-            team: all
-            env: staging
-        values:
-          path: "tenants/usecase-one/onic/staging/{{name}}"
-    - clusters:
-        selector:
-          matchLabels:
-            team: onic
-            env: production
-        values:
-          path: "tenants/usecase-one/onic/production/{{name}}"
-  template:
-    metadata:
-      name: "onic-apps-{{name}}"
-    spec:
-      project: default
-      source:
-        repoURL: git@github.com:dolldot/manifests.git
-        targetRevision: HEAD
-        path: "{{values.path}}"
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: argocd
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-- name: rrq-apps
-  namespace: argocd
-  generators:
-    - clusters:
-        selector:
-          matchLabels:
-            team: all
-            env: staging
-        values:
-          path: "tenants/usecase-one/rrq/staging/clusters/{{name}}"
-    - clusters:
-        selector:
-          matchLabels:
-            team: rrq
-            env: production
-        values:
-          path: "tenants/usecase-one/rrq/production/clusters/{{name}}"
-  template:
-    metadata:
-      name: "rrq-apps-{{name}}"
-    spec:
-      project: default
-      source:
-        repoURL: git@github.com:dolldot/manifests.git
-        targetRevision: HEAD
-        path: "{{values.path}}"
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: argocd
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
+# applicationsets:
+# - name: evos-apps
+#   namespace: argocd
+#   generators:
+#     - clusters:
+#         selector:
+#           matchLabels:
+#             team: all
+#             env: staging
+#         values:
+#           path: "tenants/usecase-one/evos/staging/{{name}}"
+#     - clusters:
+#         selector:
+#           matchLabels:
+#             team: evos
+#             env: production
+#         values:
+#           path: "tenants/usecase-one/evos/production/{{name}}"
+#   template:
+#     metadata:
+#       name: "evos-apps-{{name}}"
+#     spec:
+#       project: default
+#       source:
+#         repoURL: git@github.com:dolldot/manifests.git
+#         targetRevision: HEAD
+#         path: "{{values.path}}"
+#       destination:
+#         server: https://kubernetes.default.svc
+#         namespace: argocd
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+# - name: onic-apps
+#   namespace: argocd
+#   generators:
+#     - clusters:
+#         selector:
+#           matchLabels:
+#             team: all
+#             env: staging
+#         values:
+#           path: "tenants/usecase-one/onic/staging/{{name}}"
+#     - clusters:
+#         selector:
+#           matchLabels:
+#             team: onic
+#             env: production
+#         values:
+#           path: "tenants/usecase-one/onic/production/{{name}}"
+#   template:
+#     metadata:
+#       name: "onic-apps-{{name}}"
+#     spec:
+#       project: default
+#       source:
+#         repoURL: git@github.com:dolldot/manifests.git
+#         targetRevision: HEAD
+#         path: "{{values.path}}"
+#       destination:
+#         server: https://kubernetes.default.svc
+#         namespace: argocd
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
+# - name: rrq-apps
+#   namespace: argocd
+#   generators:
+#     - clusters:
+#         selector:
+#           matchLabels:
+#             team: all
+#             env: staging
+#         values:
+#           path: "tenants/usecase-one/rrq/staging/clusters/{{name}}"
+#     - clusters:
+#         selector:
+#           matchLabels:
+#             team: rrq
+#             env: production
+#         values:
+#           path: "tenants/usecase-one/rrq/production/clusters/{{name}}"
+#   template:
+#     metadata:
+#       name: "rrq-apps-{{name}}"
+#     spec:
+#       project: default
+#       source:
+#         repoURL: git@github.com:dolldot/manifests.git
+#         targetRevision: HEAD
+#         path: "{{values.path}}"
+#       destination:
+#         server: https://kubernetes.default.svc
+#         namespace: argocd
+#       syncPolicy:
+#         automated:
+#           prune: true
+#           selfHeal: true
