@@ -94,9 +94,6 @@ applicationsets:
 - name: extras-resources
   generators:
     - matrix:
-        # generators:
-        #   - clusters: {}
-        #   - matrix:
         generators:
           - git:
               repoURL: git@github.com:dolldot/manifests.git
