@@ -108,7 +108,7 @@ applicationsets:
                     repoURL: git@github.com:dolldot/manifests.git
                     revision: HEAD
                     directories:
-                      - path: "argocd/clusters/{{name}}/apps/extras/{{app.path.basename}}/*"
+                      - path: "argocd/clusters/{{name}}/apps/extras/{{namespace.path.basename}}/*"
                     pathParamPrefix: object
   template:
     metadata:
