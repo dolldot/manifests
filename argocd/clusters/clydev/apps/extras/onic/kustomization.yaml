@@ -1,0 +1,4 @@
+namespace: onic
+
+resources:
+  - sample-secret.yaml

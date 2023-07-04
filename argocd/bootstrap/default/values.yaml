@@ -90,7 +90,47 @@ applications:
 #       prune: true
 #       selfHeal: true
 
-# applicationsets:
+applicationsets:
+- name: extras-resources
+  generators:
+    - matrix:
+        generators:
+          - clusters: {}
+          - matrix:
+              generators:
+                - git:
+                    repoURL: git@github.com:dolldot/manifests.git
+                    revision: HEAD
+                    directories:
+                      - path: "argocd/clusters/{{name}}/apps/extras/*"
+                    pathParamPrefix: namespace
+                - git:
+                    repoURL: git@github.com:dolldot/manifests.git
+                    revision: HEAD
+                    directories:
+                      - path: "argocd/clusters/{{name}}/apps/extras/{{app.path.basename}}/*"
+                    pathParamPrefix: object
+  template:
+    metadata:
+      name: "{{name}}-{{namespace.path.basename}}-appset-{{object.path.basename}}"
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:dolldot/manifests.git
+        targetRevision: HEAD
+        path: "{{object.path}}"
+      destination:
+        server: "{{server}}"
+        namespace: "{{namespace.path.basename}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+
+
+---
 # - name: evos-apps
 #   namespace: argocd
 #   generators:
