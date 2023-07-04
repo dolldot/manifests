@@ -34,40 +34,40 @@ applications:
     automated:
       prune: true
       selfHeal: true
-- name: cert-manager
-  project: local
-  additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "3"
-  sources:
-  - repoURL: git@github.com:dolldot/manifests.git
-    targetRevision: main
-    path: components/cert-manager
-  - repoURL: git@github.com:dolldot/manifests.git
-    targetRevision: main
-    path: components/cert-manager/issuers/letsencrypt
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: cert-manager
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-- name: ingress-nginx
-  project: local
-  additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "4"
-  source:
-    repoURL: git@github.com:dolldot/manifests.git
-    targetRevision: main
-    path: components/ingress-nginx
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: ingress
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# - name: cert-manager
+#   project: local
+#   additionalAnnotations:
+#     argocd.argoproj.io/sync-wave: "3"
+#   sources:
+#   - repoURL: git@github.com:dolldot/manifests.git
+#     targetRevision: main
+#     path: components/cert-manager
+#   - repoURL: git@github.com:dolldot/manifests.git
+#     targetRevision: main
+#     path: components/cert-manager/issuers/letsencrypt
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: cert-manager
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+# - name: ingress-nginx
+#   project: local
+#   additionalAnnotations:
+#     argocd.argoproj.io/sync-wave: "4"
+#   source:
+#     repoURL: git@github.com:dolldot/manifests.git
+#     targetRevision: main
+#     path: components/ingress-nginx
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: ingress
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
