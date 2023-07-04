@@ -94,33 +94,34 @@ applicationsets:
 - name: extras-resources
   generators:
     - matrix:
+        # generators:
+        #   - clusters: {}
+        #   - matrix:
         generators:
-          - clusters: {}
-          - matrix:
-              generators:
-                - git:
-                    repoURL: git@github.com:dolldot/manifests.git
-                    revision: HEAD
-                    directories:
-                      - path: "argocd/clusters/{{name}}/apps/extras/*"
-                    pathParamPrefix: namespace
-                - git:
-                    repoURL: git@github.com:dolldot/manifests.git
-                    revision: HEAD
-                    directories:
-                      - path: "argocd/clusters/{{name}}/apps/extras/{{namespace.path.basename}}/*"
-                    pathParamPrefix: object
+          - git:
+              repoURL: git@github.com:dolldot/manifests.git
+              revision: main
+              directories:
+                - path: "argocd/clusters/clydev/apps/extras/*"
+              pathParamPrefix: namespace
+          - git:
+              repoURL: git@github.com:dolldot/manifests.git
+              revision: main
+              directories:
+                - path: "argocd/clusters/clydev/apps/extras/{{namespace.path.basename}}/*"
+              pathParamPrefix: object
   template:
     metadata:
-      name: "{{name}}-{{namespace.path.basename}}-appset-{{object.path.basename}}"
+      name: "clydev-{{namespace.path.basename}}-appset-{{object.path.basename}}"
     spec:
       project: default
       source:
         repoURL: git@github.com:dolldot/manifests.git
-        targetRevision: HEAD
+        targetRevision: main
         path: "{{object.path}}"
       destination:
-        server: "{{server}}"
+        # server: "{{server}}"
+        name: clydev
         namespace: "{{namespace.path.basename}}"
       syncPolicy:
         automated:
