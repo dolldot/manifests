@@ -1,0 +1,4 @@
+resources:
+  - provider.yaml
+  - provider-config.yaml
+  - secret.yaml
