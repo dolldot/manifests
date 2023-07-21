@@ -34,6 +34,23 @@ applications:
     automated:
       prune: true
       selfHeal: true
+- name: crossplane
+  project: local
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "3"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/crossplane
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: crossplane-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 # - name: cert-manager
 #   project: local
 #   additionalAnnotations:
