@@ -6,6 +6,6 @@ spec:
   credentials:
     source: Secret
     secretRef:
-      namespace: kube-system
+      namespace: crossplane-system
       name: crossplane-aws-creds
       key: creds
