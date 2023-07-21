@@ -34,26 +34,26 @@ applications:
     automated:
       prune: true
       selfHeal: true
-- name: crossplane
-  project: local
-  additionalAnnotations:
-    argocd.argoproj.io/sync-wave: "3"
-  sources:
-  - repoURL: git@github.com:dolldot/manifests.git
-    targetRevision: main
-    path: components/crossplane
-  - repoURL: git@github.com:dolldot/manifests.git
-    targetRevision: main
-    path: components/crossplane/providers/aws
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: crossplane-system
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# - name: crossplane
+#   project: local
+#   additionalAnnotations:
+#     argocd.argoproj.io/sync-wave: "3"
+#   sources:
+#   - repoURL: git@github.com:dolldot/manifests.git
+#     targetRevision: main
+#     path: components/crossplane
+#   - repoURL: git@github.com:dolldot/manifests.git
+#     targetRevision: main
+#     path: components/crossplane/providers/aws
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: crossplane-system
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
 # - name: cert-manager
 #   project: local
 #   additionalAnnotations:
