@@ -23,13 +23,10 @@ applications:
   project: crossplane
   additionalAnnotations:
     argocd.argoproj.io/sync-wave: "7"
-  sources:
-  - repoURL: git@github.com:dolldot/manifests.git
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
     path: components/crossplane
-  # - repoURL: git@github.com:dolldot/manifests.git
-  #   targetRevision: main
-  #   path: components/crossplane/providers/aws
   destination:
     name: crossplane
     namespace: crossplane-system
@@ -39,3 +36,18 @@ applications:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+- name: crossplane-provider-aws
+  project: crossplane
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "8"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/crossplane/providers/aws
+  destination:
+    name: crossplane
+    namespace: crossplane-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
