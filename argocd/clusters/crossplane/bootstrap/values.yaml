@@ -31,7 +31,7 @@ applications:
     targetRevision: main
     path: components/crossplane/providers/aws
   destination:
-    server: https://kubernetes.default.svc
+    name: crossplane
     namespace: crossplane-system
   syncPolicy:
     automated:
