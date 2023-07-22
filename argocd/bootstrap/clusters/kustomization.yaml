@@ -2,5 +2,6 @@ namespace: argocd
 
 resources:
   - clydev.yaml
+  - crossplane.yaml
   # - dev.yaml
   # - k3s-lab.yaml

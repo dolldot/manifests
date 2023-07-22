@@ -27,11 +27,11 @@ projects:
   sourceRepos:
     - git@github.com:dolldot/manifests.git
     - https://dolldot.github.io/manifests
-- name: k3s-lab
-  description: ArgoCD project for the ArgoCD apps in k3s-lab cluster
+- name: crossplane
+  description: ArgoCD project for the ArgoCD apps in crossplane cluster
   destinations:
     - namespace: "*"
-      name: k3s-lab
+      name: crossplane
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"
@@ -41,17 +41,32 @@ projects:
   sourceRepos:
     - git@github.com:dolldot/manifests.git
     - https://dolldot.github.io/manifests
-- name: dev
-  description: ArgoCD project for the ArgoCD apps in dev cluster
-  destinations:
-    - namespace: "*"
-      name: dev
-  clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
-  namespaceResourceWhitelist:
-    - group: "*"
-      kind: "*"
-  sourceRepos:
-    - git@github.com:dolldot/manifests.git
-    - https://dolldot.github.io/manifests
+
+# - name: k3s-lab
+#   description: ArgoCD project for the ArgoCD apps in k3s-lab cluster
+#   destinations:
+#     - namespace: "*"
+#       name: k3s-lab
+#   clusterResourceWhitelist:
+#     - group: "*"
+#       kind: "*"
+#   namespaceResourceWhitelist:
+#     - group: "*"
+#       kind: "*"
+#   sourceRepos:
+#     - git@github.com:dolldot/manifests.git
+#     - https://dolldot.github.io/manifests
+# - name: dev
+#   description: ArgoCD project for the ArgoCD apps in dev cluster
+#   destinations:
+#     - namespace: "*"
+#       name: dev
+#   clusterResourceWhitelist:
+#     - group: "*"
+#       kind: "*"
+#   namespaceResourceWhitelist:
+#     - group: "*"
+#       kind: "*"
+#   sourceRepos:
+#     - git@github.com:dolldot/manifests.git
+#     - https://dolldot.github.io/manifests

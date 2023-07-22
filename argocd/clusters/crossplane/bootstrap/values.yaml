@@ -1,0 +1,21 @@
+applications:
+- name: external-secrets
+  project: crossplane
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "6"
+  sources:
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/external-secrets
+  - repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: components/external-secrets/providers/aws-parameter-store
+  destination:
+    name: crossplane
+    namespace: external-secrets
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

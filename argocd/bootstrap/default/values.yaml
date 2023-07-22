@@ -59,6 +59,21 @@ applications:
     automated:
       prune: true
       selfHeal: true
+- name: crossplane-cluster-bootstrap
+  project: default
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "4"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: argocd/clusters/crossplane/bootstrap
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 # - name: k3s-lab-cluster-bootstrap
 #   project: default
 #   additionalAnnotations:
