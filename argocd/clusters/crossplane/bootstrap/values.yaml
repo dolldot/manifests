@@ -27,9 +27,9 @@ applications:
   - repoURL: git@github.com:dolldot/manifests.git
     targetRevision: main
     path: components/crossplane
-  - repoURL: git@github.com:dolldot/manifests.git
-    targetRevision: main
-    path: components/crossplane/providers/aws
+  # - repoURL: git@github.com:dolldot/manifests.git
+  #   targetRevision: main
+  #   path: components/crossplane/providers/aws
   destination:
     name: crossplane
     namespace: crossplane-system
