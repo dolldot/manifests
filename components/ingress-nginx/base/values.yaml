@@ -7,6 +7,12 @@ controller:
     limits:
       cpu: 100m
       memory: 150Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 70
   config:
     use-forwarded-headers: "true"
     force-ssl-redirect: "true"
