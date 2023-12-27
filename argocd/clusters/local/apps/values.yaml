@@ -1,0 +1,26 @@
+applicationsets:
+- name: tenants-apps
+  namespace: argocd
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            env: local
+        values:
+          path: "tenants/echo-headers/production/clusters/{{name}}"
+  template:
+    metadata:
+      name: "{{name}}-tenants-apps"
+    spec:
+      project: local
+      source:
+        repoURL: git@github.com:dolldot/manifests.git
+        targetRevision: HEAD
+        path: "{{values.path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
