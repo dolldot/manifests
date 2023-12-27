@@ -1,2 +1,10 @@
-resources:
-  - tenants.yaml
+namePrefix: local-
+namespace: argocd
+
+helmCharts:
+- name: argocd-apps
+  repo: https://argoproj.github.io/argo-helm
+  version: 1.2.0
+  releaseName: local-apps
+  namespace: argocd
+  valuesFile: ./values.yaml
