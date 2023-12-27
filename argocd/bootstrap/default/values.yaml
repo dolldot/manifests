@@ -29,6 +29,21 @@ applications:
     automated:
       prune: true
       selfHeal: true
+- name: local-cluster-apps
+  project: local
+  additionalAnnotations:
+    argocd.argoproj.io/sync-wave: "2"
+  source:
+    repoURL: git@github.com:dolldot/manifests.git
+    targetRevision: main
+    path: argocd/clusters/local/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 - name: clusters-bootstrap
   project: default
   additionalAnnotations:
