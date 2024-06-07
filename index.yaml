@@ -52,4 +52,15 @@ entries:
     urls:
     - https://github.com/dolldot/manifests/releases/download/microservice-0.1.0/microservice-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-24T18:23:58.777875628Z"
+  testing:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-06-07T01:46:43.881190126Z"
+    description: A Helm chart for testing
+    digest: 728284c69bb653a823d89c409198dbeb8a8fcb02e62818bfe6416ffd197030d3
+    name: testing
+    type: application
+    urls:
+    - https://github.com/dolldot/manifests/releases/download/testing-0.0.1/testing-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-06-07T01:46:43.881209382Z"
