@@ -1,0 +1,34 @@
+{{- if .Values.serviceAccount.role -}}
+{{- $secret := (lookup "v1" "Secret" "crossplane-system" "aws-default") }}
+{{- $accountId := index $secret.data "accountID" }}
+{{- $oidc := index $secret.data "oidc" }}
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: {{ include "microservice.serviceAccountName" . }}
+  annotations:
+    crossplane.io/external-name: {{ include "microservice.serviceAccountName" . }}
+spec:
+  providerConfigRef:
+    name: aws
+  forProvider:
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "arn:aws:iam::{{ $accountId | b64dec }}:oidc-provider/{{ $oidc | b64dec }}"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringEquals": {
+                "{{ $oidc | b64dec }}:sub": "system:serviceaccount:default:test-irsa",
+                "{{ $oidc | b64dec }}:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      }
+{{- end }}

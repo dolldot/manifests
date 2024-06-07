@@ -1,0 +1,16 @@
+# -- Provide a name, default value will be `Chart.name`
+nameOverride: ""
+
+# -- String to fully override
+fullnameOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+  # -- Specifies whether we want to crate a role for IRSA (IAM Role for Service Account)
+  role: false
