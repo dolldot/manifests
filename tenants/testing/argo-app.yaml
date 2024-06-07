@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: testing-lookup-irsa
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  source:
+    repoURL: "https://dolldot.github.io/manifests"
+    targetRevision: 0.0.1
+    chart: testing
+    helm:
+      releaseName: "testing-lookup-irsa"
+      valuesObject:
+        serviceAccount:
+          create: true
+          role: true
