@@ -1,9 +1,7 @@
 replicaCount: 1
-
 image:
   repository: dolldot/webest
-  tag: latest
+  tag: 007532117ec19fb4bc8359d5bcbaedf72c0f6ac4
   pullPolicy: IfNotPresent
-
 service:
   port: 80
