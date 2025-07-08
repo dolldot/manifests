@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: brndnmtthws/nginx-echo-headers
-  tag: latest
+  tag: "58c6545"
   pullPolicy: IfNotPresent
 
 service:
