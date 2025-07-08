@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: dolldot/webest
-  tag: 377c158
+  tag: f2105b2
   pullPolicy: IfNotPresent
 
 service:
